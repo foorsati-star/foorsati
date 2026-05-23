@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200">
+  <g font-family="IBM Plex Sans Arabic, sans-serif" font-weight="900" font-size="150" letter-spacing="-5" fill="#ffffff">
+    <text x="50" y="150">F</text>
+    
+    <g transform="translate(140, 45)">
+      <mask id="arrowMask">
+        <rect width="380" height="240" y="-50" fill="white" />
+        <path d="M 150,150 L150,30 L90,30 L190,-70 L290,30 L230,30 L230,150 Z" fill="black" />
+      </mask>
+      <circle cx="100" cy="30" r="100" fill="#ffffff" mask="url(#arrowMask)" />
+      <circle cx="280" cy="30" r="100" fill="#ffffff" mask="url(#arrowMask)" />
+    </g>
+
+    <text x="540" y="150">RSATI</text>
+  </g>
+</svg>

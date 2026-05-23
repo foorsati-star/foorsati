@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرصتي - معاينة التصميم</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: "#064e3b",
+                            50: "#ecfdf5",
+                            100: "#d1fae5",
+                            200: "#a7f3d0",
+                            300: "#6ee7b7",
+                            400: "#34d399",
+                            500: "#10b981",
+                            600: "#059669",
+                            700: "#047857",
+                            800: "#065f46",
+                            900: "#064e3b",
+                            950: "#022c22",
+                        },
+                        secondary: {
+                            DEFAULT: "#fdfbf7",
+                        },
+                        accent: {
+                            DEFAULT: "#ea580c",
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                        heading: ['IBM Plex Sans Arabic', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #fdfbf7;
+            color: #0f172a;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        h1 { line-height: 1.2 !important; }
+        h2 { line-height: 1.3 !important; }
+        h3 { line-height: 1.4 !important; }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 w-full bg-white border-b border-gray-100 shadow-sm">
+        <div class="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center hover:opacity-90 transition-opacity" dir="ltr">
+                <div class="flex items-center font-heading font-black tracking-tighter leading-none" style="font-size: 1.5rem;">
+                    <span class="text-primary">F</span>
+                    <svg viewBox="0 0 190 120" class="inline-block mx-[0.08em]" style="height: 0.85em; transform: translateY(-0.02em);">
+                        <mask id="arrowMask">
+                            <rect width="190" height="120" fill="white" />
+                            <path d="M 75,120 L75,60 L45,60 L95,10 L145,60 L115,60 L115,120 Z" fill="black" />
+                        </mask>
+                        <circle cx="50" cy="60" r="50" fill="#064e3b" mask="url(#arrowMask)" />
+                        <circle cx="140" cy="60" r="50" fill="#ea580c" mask="url(#arrowMask)" />
+                    </svg>
+                    <span class="text-primary">RSATI</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#" class="text-primary hover:text-primary transition-colors">الرئيسية</a>
+                <a href="#" class="hover:text-primary transition-colors">تصفح الحرفيين</a>
+                <a href="#" class="hover:text-primary transition-colors">من نحن</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">تسجيل الدخول</a>
+                    <a href="#" class="text-sm font-medium bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-800 transition-colors shadow-sm">سجل كحرفي</a>
+                </div>
+                <button class="md:hidden p-2 text-slate-600 hover:bg-gray-50 rounded-md">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <div class="flex flex-col gap-16 pb-16">
+            
+            <!-- Hero Section -->
+            <section class="relative pt-12 pb-20 md:pt-20 md:pb-32">
+                <div class="absolute inset-0 bg-primary-900/5 -z-10"></div>
+                
+                <div class="container mx-auto px-4 md:px-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="max-w-2xl">
+                            <span class="inline-block py-1 px-3 rounded-full bg-primary-100 text-primary-800 text-sm font-medium mb-6">المنصة الأولى للحرفيين في ورقلة</span>
+                            <h1 class="font-heading text-4xl md:text-5xl lg:text-[4rem] leading-[1.15] font-bold text-slate-800 tracking-tight mb-8">
+                                اعثر على <span class="text-primary">أمهر الحرفيين</span><br class="hidden md:block"> لمشروعك القادم
+                            </h1>
+                            <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-xl leading-relaxed font-medium">
+                                منصة فرصتي تربطك بأفضل العمال والحرفيين المحليين الموثوقين في مجالات الكهرباء، السباكة، البناء والمزيد.
+                            </p>
+                            
+                            <div class="bg-white p-2 rounded-2xl shadow-lg shadow-slate-200/50 flex flex-col md:flex-row gap-2 max-w-2xl relative z-40">
+                                <div class="flex-1 flex items-center gap-3 px-4 py-3 bg-slate-50 rounded-xl">
+                                    <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+                                    <input type="text" placeholder="ما الخدمة التي تبحث عنها؟" class="bg-transparent border-none outline-none w-full text-slate-700 placeholder:text-slate-400 text-sm md:text-base">
+                                </div>
+                                <div class="relative flex-1" id="location-select-container">
+                                    <button type="button" id="location-select-btn" class="w-full flex items-center justify-between gap-3 px-4 py-3 bg-slate-50 hover:bg-slate-100 rounded-xl transition-colors text-right">
+                                        <div class="flex items-center gap-3">
+                                            <i data-lucide="map-pin" class="w-5 h-5 text-slate-400"></i>
+                                            <span id="location-select-text" class="text-slate-700 font-medium text-sm md:text-base">كل ورقلة</span>
+                                        </div>
+                                        <i data-lucide="chevron-down" id="location-select-icon" class="w-4 h-4 text-slate-400 transition-transform duration-200"></i>
+                                    </button>
+                                    <div id="location-dropdown" class="absolute z-50 top-full mt-2 w-full min-w-[240px] bg-white border border-slate-100 rounded-2xl shadow-xl shadow-slate-200/50 overflow-hidden right-0 hidden opacity-0 transition-opacity duration-200">
+                                        <div class="p-3 border-b border-slate-50 bg-slate-50/50">
+                                            <div class="flex items-center gap-2 px-3 py-2.5 bg-white rounded-xl border border-slate-200 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all">
+                                                <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+                                                <input type="text" id="location-search" placeholder="ابحث عن منطقة..." class="w-full bg-transparent border-none outline-none text-sm text-slate-700 placeholder:text-slate-400">
+                                            </div>
+                                        </div>
+                                        <ul id="location-list" class="max-h-60 overflow-y-auto p-2 space-y-1 custom-scrollbar">
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors bg-primary-50 text-primary font-bold" data-value="all"><span class="location-name">كل ورقلة</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="centre"><span class="location-name">وسط المدينة</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="rouissat"><span class="location-name">الرويسات</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="sidi_khouiled"><span class="location-name">سيدي خويلد</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="ain_beida"><span class="location-name">عين البيضاء</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="nezla"><span class="location-name">النزلة</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="hassi_messaoud"><span class="location-name">حاسي مسعود</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="touggourt"><span class="location-name">تقرت</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="temacine"><span class="location-name">تماسين</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="el_hadjira"><span class="location-name">الحجيرة</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                            <li><button type="button" class="location-option w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-right text-sm transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-value="taibet"><span class="location-name">الطيبات</span><i data-lucide="check" class="w-4 h-4 text-primary check-icon hidden"></i></button></li>
+                                        </ul>
+                                        <div id="location-no-results" class="hidden px-3 py-6 text-center text-sm text-slate-500">لم يتم العثور على منطقة بهذا الاسم</div>
+                                    </div>
+                                </div>
+                                <button class="bg-primary hover:bg-primary-800 text-white px-8 py-3 rounded-xl font-medium transition-colors whitespace-nowrap">بحث</button>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="relative h-[400px] md:h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl bg-slate-200">
+                                <!-- Using Unsplash image as placeholder for the preview so it actually shows an image without relying on local server -->
+                                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop" alt="Worker" class="object-cover w-full h-full" />
+                            </div>
+                            <div class="absolute -bottom-6 -right-6 md:-left-8 md:right-auto bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                                    <i data-lucide="shield" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-800">حرفيون موثوقون</p>
+                                    <p class="text-sm text-slate-500">تم التحقق من هويتهم</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categories Section -->
+            <section class="container mx-auto px-4 md:px-6">
+                <div class="flex items-end justify-between mb-8">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-2">تصفح حسب الخدمة</h2>
+                        <p class="text-slate-500">اختر من بين مجموعة واسعة من الخدمات المهنية</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+                    <a href="#" class="group block p-6 bg-white rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-4 bg-amber-50 group-hover:scale-110 transition-transform">
+                            <i data-lucide="zap" class="w-7 h-7 text-amber-500"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">كهرباء</h3>
+                        <p class="text-sm text-slate-400">42 حرفي</p>
+                    </a>
+                    <a href="#" class="group block p-6 bg-white rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-4 bg-blue-50 group-hover:scale-110 transition-transform">
+                            <i data-lucide="droplets" class="w-7 h-7 text-blue-500"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">سباكة</h3>
+                        <p class="text-sm text-slate-400">38 حرفي</p>
+                    </a>
+                    <a href="#" class="group block p-6 bg-white rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-4 bg-stone-50 group-hover:scale-110 transition-transform">
+                            <i data-lucide="wrench" class="w-7 h-7 text-stone-500"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">بناء ومقاولات</h3>
+                        <p class="text-sm text-slate-400">56 حرفي</p>
+                    </a>
+                    <a href="#" class="group block p-6 bg-white rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-4 bg-rose-50 group-hover:scale-110 transition-transform">
+                            <i data-lucide="paintbrush" class="w-7 h-7 text-rose-500"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">دهان وصباغة</h3>
+                        <p class="text-sm text-slate-400">24 حرفي</p>
+                    </a>
+                    <a href="#" class="group block p-6 bg-white rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg transition-all text-center">
+                        <div class="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-4 bg-emerald-50 group-hover:scale-110 transition-transform">
+                            <i data-lucide="truck" class="w-7 h-7 text-emerald-500"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">نقل عفش</h3>
+                        <p class="text-sm text-slate-400">18 حرفي</p>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 mt-auto">
+        <div class="container mx-auto px-4 md:px-6 py-12 text-center text-slate-500">
+            <p>تم تصميم المعاينة خصيصاً كنموذج عرض ثابت (بدون الحاجة لبيئة Node.js)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Location Select Logic
+        const btn = document.getElementById('location-select-btn');
+        const dropdown = document.getElementById('location-dropdown');
+        const searchInput = document.getElementById('location-search');
+        const text = document.getElementById('location-select-text');
+        const icon = document.getElementById('location-select-icon');
+        const options = document.querySelectorAll('.location-option');
+        const noResults = document.getElementById('location-no-results');
+
+        options.forEach(opt => {
+            opt.addEventListener('click', () => {
+                // Update text
+                const name = opt.querySelector('.location-name').innerText;
+                text.innerText = name;
+                
+                // Update active state
+                options.forEach(o => {
+                    o.classList.remove('bg-primary-50', 'text-primary', 'font-bold');
+                    o.classList.add('text-slate-600', 'hover:bg-slate-50', 'hover:text-slate-900');
+                    o.querySelector('.check-icon').classList.add('hidden');
+                });
+                
+                opt.classList.add('bg-primary-50', 'text-primary', 'font-bold');
+                opt.classList.remove('text-slate-600', 'hover:bg-slate-50', 'hover:text-slate-900');
+                opt.querySelector('.check-icon').classList.remove('hidden');
+                
+                closeDropdown();
+            });
+        });
+
+        function filterList(query) {
+            let hasVisible = false;
+            options.forEach(opt => {
+                const name = opt.querySelector('.location-name').innerText;
+                if (name.includes(query)) {
+                    opt.parentElement.classList.remove('hidden');
+                    hasVisible = true;
+                } else {
+                    opt.parentElement.classList.add('hidden');
+                }
+            });
+            if (!hasVisible) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        function toggleDropdown() {
+            const isHidden = dropdown.classList.contains('hidden');
+            if (isHidden) {
+                dropdown.classList.remove('hidden');
+                setTimeout(() => dropdown.classList.remove('opacity-0'), 10);
+                icon.classList.add('rotate-180');
+            } else {
+                closeDropdown();
+            }
+        }
+
+        function closeDropdown() {
+            dropdown.classList.add('opacity-0');
+            icon.classList.remove('rotate-180');
+            setTimeout(() => {
+                dropdown.classList.add('hidden');
+                searchInput.value = '';
+                filterList('');
+            }, 200);
+        }
+
+        btn.addEventListener('click', toggleDropdown);
+        searchInput.addEventListener('input', (e) => filterList(e.target.value));
+        
+        document.addEventListener('click', (e) => {
+            if (!document.getElementById('location-select-container').contains(e.target)) {
+                closeDropdown();
+            }
+        });
+    </script>
+</body>
+</html>
