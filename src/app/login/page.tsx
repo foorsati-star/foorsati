@@ -112,24 +112,12 @@ export default function LoginPage() {
               />
 
             </div>
-
+ <label className="block text-sm font-bold text-slate-700">
+                  كلمة المرور
+                </label>
             {/* Password */}
             <div>
 
-              <div className="flex items-center justify-between mb-2">
-
-                <label className="block text-sm font-bold text-slate-700">
-                  كلمة المرور
-                </label>
-
-                <Link
-                  href="/forgot-password"
-                  className="text-xs text-primary hover:underline font-bold"
-                >
-                  نسيت كلمة المرور؟
-                </Link>
-
-              </div>
 
               <input
                 type="password"
@@ -140,6 +128,22 @@ export default function LoginPage() {
                 placeholder="••••••••"
               />
 
+
+              <div className="flex items-center justify-between mb-2">
+
+              <div className="flex items-center justify-between mt-3 mb-5">
+
+  <Link
+    href="/forgot-password"
+    className="text-sm text-primary font-semibold hover:underline"
+  >
+    نسيت كلمة المرور؟
+  </Link>
+
+
+</div>
+
+              </div>
             </div>
 
             {/* Button */}
