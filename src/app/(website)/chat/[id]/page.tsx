@@ -8,6 +8,8 @@ import {
 
 import { supabase } from "@/lib/supabase";
 
+import toast from "react-hot-toast";
+
 export default function ChatPage({
   params,
 }: {
@@ -25,6 +27,9 @@ export default function ChatPage({
 
   const [onlineStatus, setOnlineStatus] =
     useState<any>(null);
+
+  const [loading, setLoading] =
+    useState(true);
 
   const bottomRef =
     useRef<HTMLDivElement>(null);
@@ -44,15 +49,21 @@ export default function ChatPage({
 
     const setupChat = async () => {
 
-      // Current User
-
       const {
         data: { user },
       } = await supabase.auth.getUser();
 
-      if (!user) return;
+      if (!user) {
 
-      // Online
+        toast.error(
+          "يجب تسجيل الدخول"
+        );
+
+        return;
+
+      }
+
+      // Online Status
 
       await supabase
         .from("online_status")
@@ -64,11 +75,12 @@ export default function ChatPage({
 
           is_online: true,
 
-          last_seen: new Date(),
+          last_seen:
+            new Date(),
 
         });
 
-      // Messages
+      // Fetch Messages
 
       const {
         data,
@@ -76,30 +88,48 @@ export default function ChatPage({
       } = await supabase
         .from("messages")
         .select("*")
-        .eq("chat_id", params.id)
-        .order("created_at", {
-          ascending: true,
-        });
+        .eq(
+          "chat_id",
+          params.id
+        )
+        .order(
+          "created_at",
+          {
+            ascending: true,
+          }
+        );
 
       if (error) {
 
-        console.log(error);
+        console.error(error);
+
+        toast.error(
+          "فشل تحميل الرسائل"
+        );
 
       } else {
 
-        setMessages(data || []);
+        setMessages(
+          data || []
+        );
 
       }
 
-      // Seen
+      // Seen Messages
 
       await supabase
         .from("messages")
         .update({
           is_read: true,
         })
-        .eq("chat_id", params.id)
-        .neq("sender", "worker");
+        .eq(
+          "chat_id",
+          params.id
+        )
+        .neq(
+          "sender",
+          "worker"
+        );
 
       // Online Status
 
@@ -108,23 +138,29 @@ export default function ChatPage({
       } = await supabase
         .from("online_status")
         .select("*")
-        .eq("user_type", "client")
+        .eq(
+          "user_type",
+          "client"
+        )
         .single();
 
-      setOnlineStatus(statusData);
-
-      // Messages Realtime
-
-      messagesChannel = supabase.channel(
-        `chat-${params.id}`
+      setOnlineStatus(
+        statusData
       );
+
+      // Realtime Messages
+
+      messagesChannel =
+        supabase.channel(
+          `chat-${params.id}`
+        );
 
       messagesChannel.on(
 
         "postgres_changes",
 
         {
-          event: "INSERT",
+          event: "*",
 
           schema: "public",
 
@@ -156,18 +192,20 @@ export default function ChatPage({
             );
 
           setMessages(
-            updatedMessages || []
+            updatedMessages ||
+              []
           );
 
         }
 
       );
 
-      // Typing Realtime
+      // Typing Channel
 
-      typingChannel = supabase.channel(
-        `typing-${params.id}`
-      );
+      typingChannel =
+        supabase.channel(
+          `typing-${params.id}`
+        );
 
       typingChannel.on(
 
@@ -207,8 +245,8 @@ export default function ChatPage({
 
           setTypingUser(
 
-            typingData?.is_typing
-              || false
+            typingData?.is_typing ||
+              false
 
           );
 
@@ -216,11 +254,12 @@ export default function ChatPage({
 
       );
 
-      // Online Realtime
+      // Online Channel
 
-      onlineChannel = supabase.channel(
-        `online-${params.id}`
-      );
+      onlineChannel =
+        supabase.channel(
+          `online-${params.id}`
+        );
 
       onlineChannel.on(
 
@@ -259,15 +298,15 @@ export default function ChatPage({
 
       );
 
-      // Subscribe مرة واحدة فقط
-
       await messagesChannel.subscribe();
 
       await typingChannel.subscribe();
 
       await onlineChannel.subscribe();
 
-      // قبل إغلاق الصفحة
+      setLoading(false);
+
+      // Before Unload
 
       window.addEventListener(
 
@@ -339,7 +378,7 @@ export default function ChatPage({
 
   }, [params.id]);
 
-  // Scroll
+  // Scroll Bottom
 
   useEffect(() => {
 
@@ -369,7 +408,9 @@ export default function ChatPage({
 
       });
 
-    if (typingTimeout.current) {
+    if (
+      typingTimeout.current
+    ) {
 
       clearTimeout(
         typingTimeout.current
@@ -378,75 +419,129 @@ export default function ChatPage({
     }
 
     typingTimeout.current =
-      setTimeout(async () => {
+      setTimeout(
+        async () => {
 
-        await supabase
-          .from(
-            "typing_status"
-          )
-          .upsert({
+          await supabase
+            .from(
+              "typing_status"
+            )
+            .upsert({
 
-            chat_id:
-              params.id,
+              chat_id:
+                params.id,
 
-            user_type:
-              "worker",
+              user_type:
+                "worker",
 
-            is_typing:
-              false,
+              is_typing:
+                false,
 
-          });
+            });
 
-      }, 1500);
+        },
+
+        1500
+
+      );
 
   };
 
   // Send Message
 
-  const sendMessage = async () => {
+  const sendMessage =
+    async () => {
 
-    if (!message.trim()) return;
+      if (
+        !message.trim()
+      ) return;
 
-    const newMessage = {
+      const {
+        data: { user },
+      } =
+        await supabase.auth.getUser();
 
-      chat_id: params.id,
+      if (!user) {
 
-      sender: "worker",
+        toast.error(
+          "يجب تسجيل الدخول"
+        );
 
-      message,
+        return;
 
-      is_read: false,
+      }
+
+      const newMessage = {
+
+        chat_id:
+          params.id,
+
+        sender:
+          "worker",
+
+        sender_id:
+          user.id,
+
+        message:
+          message.trim(),
+
+        is_read: false,
+
+      };
+
+      // Optimistic Update
+
+      setMessages(
+        (prev) => [
+          ...prev,
+          newMessage,
+        ]
+      );
+
+      setMessage("");
+
+      // Stop Typing
+
+      await supabase
+        .from(
+          "typing_status"
+        )
+        .upsert({
+
+          chat_id:
+            params.id,
+
+          user_type:
+            "worker",
+
+          is_typing:
+            false,
+
+        });
+
+      // Insert
+
+      const { error } =
+        await supabase
+          .from("messages")
+          .insert([
+            newMessage,
+          ]);
+
+      if (error) {
+
+        console.error(
+          "MESSAGE ERROR:",
+          error
+        );
+
+        toast.error(
+          "فشل إرسال الرسالة"
+        );
+
+      }
 
     };
-
-    setMessage("");
-
-    await supabase
-      .from("typing_status")
-      .upsert({
-
-        chat_id: params.id,
-
-        user_type: "worker",
-
-        is_typing: false,
-
-      });
-
-    const { error } =
-      await supabase
-        .from("messages")
-        .insert([
-          newMessage,
-        ]);
-
-    if (error) {
-
-      console.log(error);
-
-    }
-
-  };
 
   return (
 
@@ -456,6 +551,7 @@ export default function ChatPage({
         bg-slate-100
         flex
         flex-col
+        pb-[120px]
       "
       dir="rtl"
     >
@@ -468,85 +564,85 @@ export default function ChatPage({
           px-6
           py-5
           shadow-sm
-          flex
-          items-center
-          justify-between
+          sticky
+          top-0
+          z-20
         "
       >
 
-        <div>
+        <div
+          className="
+            flex
+            items-center
+            justify-between
+          "
+        >
 
-          <h1
-            className="
-              text-3xl
-              font-extrabold
-              text-slate-900
-            "
-          >
+          <div>
 
-            المحادثة
+            <h1
+              className="
+                text-2xl
+                font-extrabold
+                text-slate-900
+              "
+            >
 
-          </h1>
+              المحادثة
 
-          <div
-            className="
-              mt-2
-              flex
-              items-center
-              gap-3
-            "
-          >
+            </h1>
 
-            {onlineStatus?.is_online ? (
+            <div
+              className="
+                mt-2
+                flex
+                items-center
+                gap-3
+              "
+            >
 
-              <div
-                className="
-                  flex
-                  items-center
-                  gap-2
-                  text-green-600
-                  font-bold
-                "
-              >
+              {onlineStatus?.is_online ? (
 
                 <div
                   className="
-                    w-3
-                    h-3
-                    rounded-full
-                    bg-green-500
-                    animate-pulse
+                    flex
+                    items-center
+                    gap-2
+                    text-green-600
+                    font-bold
                   "
-                ></div>
+                >
 
-                متصل الآن
+                  <div
+                    className="
+                      w-3
+                      h-3
+                      rounded-full
+                      bg-green-500
+                      animate-pulse
+                    "
+                  ></div>
 
-              </div>
+                  متصل الآن
 
-            ) : (
+                </div>
 
-              <div
-                className="
-                  text-slate-500
-                  text-sm
-                "
-              >
+              ) : (
 
-                آخر ظهور:
+                <div
+                  className="
+                    text-slate-500
+                    text-sm
+                  "
+                >
 
-                {" "}
+                  غير متصل
 
-                {
-                  onlineStatus?.last_seen
-                    ? new Date(
-                        onlineStatus.last_seen
-                      ).toLocaleString("ar")
-                    : "غير معروف"
-                }
+                </div>
 
-              </div>
+              )}
 
-            )}
+            </div>
 
           </div>
 
@@ -560,13 +656,31 @@ export default function ChatPage({
         className="
           flex-1
           overflow-y-auto
-          p-6
+          p-5
           space-y-4
         "
       >
 
+        {loading && (
+
+          <div
+            className="
+              text-center
+              text-slate-500
+            "
+          >
+
+            جاري التحميل...
+
+          </div>
+
+        )}
+
         {messages.map(
-          (msg, index) => (
+          (
+            msg,
+            index
+          ) => (
 
             <div
               key={index}
@@ -583,13 +697,13 @@ export default function ChatPage({
 
               <div
                 className={`
-                  max-w-[75%]
+                  max-w-[80%]
                   px-5
                   py-4
                   rounded-[28px]
-                  text-lg
+                  text-base
+                  leading-7
                   shadow-sm
-                  leading-8
                   ${
                     msg.sender ===
                     "worker"
@@ -645,10 +759,15 @@ export default function ChatPage({
 
       <div
         className="
+          fixed
+          bottom-[85px]
+          left-0
+          right-0
           bg-white
           border-t
           border-slate-200
-          p-5
+          p-4
+          z-30
         "
       >
 
@@ -658,48 +777,57 @@ export default function ChatPage({
             mx-auto
             flex
             items-center
-            gap-4
+            gap-3
           "
         >
 
           <input
+
             type="text"
+
             value={message}
+
             onChange={(e) =>
               handleTyping(
                 e.target.value
               )
             }
+
             placeholder="اكتب رسالتك..."
+
             className="
               flex-1
               bg-slate-100
               rounded-3xl
-              px-6
+              px-5
               py-4
               outline-none
-              text-lg
+              text-base
               focus:ring-4
               focus:ring-primary/10
             "
+
           />
 
           <button
-            onClick={sendMessage}
+
+            onClick={
+              sendMessage
+            }
+
             className="
               bg-primary
               text-white
-              px-8
+              px-7
               py-4
               rounded-3xl
-              font-extrabold
-              text-lg
-              shadow-[0_0_25px_rgba(16,185,129,0.35)]
+              font-bold
+              shadow-lg
               hover:scale-105
-              hover:shadow-[0_0_45px_rgba(16,185,129,0.6)]
               transition-all
               duration-300
             "
+
           >
 
             إرسال
