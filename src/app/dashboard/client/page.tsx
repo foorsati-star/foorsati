@@ -1,171 +1,1111 @@
+"use client";
+
+import Link from "next/link";
+
+import {
+
+  Briefcase,
+
+  MessageCircle,
+
+  Heart,
+
+  Settings,
+
+  LogOut,
+
+  Clock3,
+
+  CheckCircle2,
+
+  Sparkles,
+
+  UserCircle2,
+
+  ShieldCheck,
+
+  Star,
+
+  ArrowLeft,
+
+} from "lucide-react";
+
 export default function ClientDashboard() {
 
   return (
 
-    <div className="flex min-h-screen">
+    <div
+      className="
+        min-h-screen
+        bg-slate-100
+        pb-24
+      "
+      dir="rtl"
+    >
 
-      {/* Sidebar */}
-<aside className="w-72 bg-white border-l border-slate-200 p-6 shadow-sm">
+      {/* Hero */}
 
-  <div className="mb-10">
+      <div
+        className="
+          relative
+          overflow-hidden
+          bg-gradient-to-br
+          from-primary
+          to-emerald-700
+          px-5
+          pt-10
+          pb-28
+        "
+      >
 
-    <h2 className="text-3xl font-extrabold text-primary">
-      فرصتي
-    </h2>
+        {/* Glow */}
 
-    <p className="text-sm text-slate-400 mt-2">
-      لوحة تحكم العميل
-    </p>
+        <div
+          className="
+            absolute
+            w-[350px]
+            h-[350px]
+            rounded-full
+            bg-white/10
+            blur-3xl
+            -top-24
+            -left-24
+          "
+        ></div>
 
-  </div>
+        <div
+          className="
+            relative
+            max-w-7xl
+            mx-auto
+          "
+        >
 
-  <nav className="space-y-2">
+          <div
+            className="
+              flex
+              flex-col
+              lg:flex-row
+              items-start
+              lg:items-center
+              justify-between
+              gap-8
+            "
+          >
 
-    <button className="
-      w-full
-      text-right
-      px-5
-      py-4
-      rounded-2xl
-      bg-primary
-      text-white
-      font-bold
-      shadow-lg
-      shadow-primary/10
-    ">
-      الرئيسية
-    </button>
+            {/* User */}
 
-    <button className="
-      w-full
-      text-right
-      px-5
-      py-4
-      rounded-2xl
-      text-slate-700
-      hover:bg-slate-100
-      transition-all
-      font-medium
-    ">
-      طلباتي
-    </button>
+            <div
+              className="
+                flex
+                flex-col
+                md:flex-row
+                items-center
+                gap-6
+                text-center
+                md:text-right
+              "
+            >
 
-    <button className="
-      w-full
-      text-right
-      px-5
-      py-4
-      rounded-2xl
-      text-slate-700
-      hover:bg-slate-100
-      transition-all
-      font-medium
-    ">
-      الرسائل
-    </button>
+              {/* Avatar */}
 
-    <button className="
-      w-full
-      text-right
-      px-5
-      py-4
-      rounded-2xl
-      text-slate-700
-      hover:bg-slate-100
-      transition-all
-      font-medium
-    ">
-      الحرفيون المحفوظون
-    </button>
+              <div
+                className="
+                  relative
+                "
+              >
 
-    <button className="
-      w-full
-      text-right
-      px-5
-      py-4
-      rounded-2xl
-      text-slate-700
-      hover:bg-slate-100
-      transition-all
-      font-medium
-    ">
-      إعدادات الحساب
-    </button>
+                <div
+                  className="
+                    w-36
+                    h-36
+                    rounded-full
+                    bg-white
+                    text-primary
+                    flex
+                    items-center
+                    justify-center
+                    text-5xl
+                    font-black
+                    border-[6px]
+                    border-white
+                    shadow-2xl
+                  "
+                >
 
-    <div className="pt-6 mt-6 border-t border-slate-100">
+                  م
 
-      <button className="
-        w-full
-        text-right
-        px-5
-        py-4
-        rounded-2xl
-        text-red-500
-        hover:bg-red-50
-        transition-all
-        font-semibold
-      ">
-        تسجيل الخروج
-      </button>
+                </div>
 
-    </div>
+                {/* Online */}
 
-  </nav>
+                <div
+                  className="
+                    absolute
+                    bottom-3
+                    left-3
+                    w-6
+                    h-6
+                    rounded-full
+                    bg-green-500
+                    border-4
+                    border-white
+                  "
+                ></div>
 
-</aside>
-      {/* Content */}
-      <main className="flex-1 p-10 bg-slate-50">
+              </div>
 
-        <h1 className="text-3xl font-bold text-slate-900 mb-4">
-          مرحبًا بك 👋
-        </h1>
+              {/* Info */}
 
-        <p className="text-slate-500 mb-10">
-          هذه لوحة تحكم العميل.
-        </p>
+              <div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div
+                  className="
+                    flex
+                    items-center
+                    justify-center
+                    md:justify-start
+                    gap-3
+                    flex-wrap
+                  "
+                >
 
-          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+                  <h1
+                    className="
+                      text-4xl
+                      md:text-5xl
+                      font-black
+                      text-white
+                    "
+                  >
 
-            <h3 className="text-slate-500 text-sm mb-2">
-              الطلبات النشطة
-            </h3>
+                    محمد علي
 
-            <p className="text-4xl font-bold text-primary">
-              4
-            </p>
+                  </h1>
 
-          </div>
+                  <div
+                    className="
+                      bg-white/15
+                      backdrop-blur-xl
+                      text-white
+                      px-4
+                      py-2
+                      rounded-full
+                      flex
+                      items-center
+                      gap-2
+                      font-bold
+                    "
+                  >
 
-          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+                    <ShieldCheck
+                      className="
+                        w-5
+                        h-5
+                      "
+                    />
 
-            <h3 className="text-slate-500 text-sm mb-2">
-              الرسائل الجديدة
-            </h3>
+                    عميل موثق
 
-            <p className="text-4xl font-bold text-primary">
-              12
-            </p>
+                  </div>
 
-          </div>
+                </div>
 
-          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+                <p
+                  className="
+                    text-white/80
+                    text-xl
+                    mt-4
+                  "
+                >
 
-            <h3 className="text-slate-500 text-sm mb-2">
-              الحرفيون المحفوظون
-            </h3>
+                  عميل داخل منصة فرصتي
 
-            <p className="text-4xl font-bold text-primary">
-              7
-            </p>
+                </p>
+
+                {/* Stats */}
+
+                <div
+                  className="
+                    mt-6
+                    flex
+                    flex-wrap
+                    items-center
+                    justify-center
+                    md:justify-start
+                    gap-4
+                  "
+                >
+
+                  <div
+                    className="
+                      bg-white/10
+                      backdrop-blur-xl
+                      px-5
+                      py-3
+                      rounded-2xl
+                      text-white
+                      flex
+                      items-center
+                      gap-3
+                    "
+                  >
+
+                    <CheckCircle2
+                      className="
+                        w-5
+                        h-5
+                      "
+                    />
+
+                    <span
+                      className="
+                        font-bold
+                      "
+                    >
+
+                      18 طلب مكتمل
+
+                    </span>
+
+                  </div>
+
+                  <div
+                    className="
+                      bg-white/10
+                      backdrop-blur-xl
+                      px-5
+                      py-3
+                      rounded-2xl
+                      text-white
+                      flex
+                      items-center
+                      gap-3
+                    "
+                  >
+
+                    <Star
+                      className="
+                        w-5
+                        h-5
+                      "
+                    />
+
+                    <span
+                      className="
+                        font-bold
+                      "
+                    >
+
+                      تقييم ممتاز
+
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* Actions */}
+
+            <div
+              className="
+                flex
+                flex-col
+                gap-4
+                w-full
+                lg:w-auto
+              "
+            >
+
+              <button
+                className="
+                  bg-white
+                  text-primary
+                  px-10
+                  py-5
+                  rounded-3xl
+                  text-lg
+                  font-black
+                  shadow-2xl
+                  hover:scale-105
+                  transition-all
+                  duration-300
+                  flex
+                  items-center
+                  justify-center
+                  gap-3
+                "
+              >
+
+                <MessageCircle
+                  className="
+                    w-6
+                    h-6
+                  "
+                />
+
+                الرسائل
+
+              </button>
+
+              <button
+                className="
+                  bg-black/15
+                  backdrop-blur-xl
+                  border
+                  border-white/20
+                  text-white
+                  px-10
+                  py-5
+                  rounded-3xl
+                  text-lg
+                  font-black
+                  hover:bg-black/25
+                  transition-all
+                  duration-300
+                  flex
+                  items-center
+                  justify-center
+                  gap-3
+                "
+              >
+
+                <Settings
+                  className="
+                    w-6
+                    h-6
+                  "
+                />
+
+                الإعدادات
+
+              </button>
+
+            </div>
 
           </div>
 
         </div>
 
-      </main>
+      </div>
+
+      {/* Content */}
+
+      <div
+        className="
+          relative
+          z-10
+          max-w-7xl
+          mx-auto
+          px-4
+          -mt-16
+        "
+      >
+
+        {/* Stats */}
+
+        <div
+          className="
+            grid
+            grid-cols-1
+            md:grid-cols-2
+            xl:grid-cols-4
+            gap-5
+          "
+        >
+
+          {/* Active Orders */}
+
+          <div
+            className="
+              bg-white
+              rounded-[30px]
+              p-7
+              shadow-card
+            "
+          >
+
+            <div
+              className="
+                w-14
+                h-14
+                rounded-2xl
+                bg-primary/10
+                text-primary
+                flex
+                items-center
+                justify-center
+                mb-5
+              "
+            >
+
+              <Briefcase
+                className="
+                  w-7
+                  h-7
+                "
+              />
+
+            </div>
+
+            <p
+              className="
+                text-slate-500
+              "
+            >
+
+              الطلبات النشطة
+
+            </p>
+
+            <h2
+              className="
+                text-5xl
+                font-black
+                text-slate-900
+                mt-3
+              "
+            >
+
+              4
+
+            </h2>
+
+          </div>
+
+          {/* Messages */}
+
+          <div
+            className="
+              bg-white
+              rounded-[30px]
+              p-7
+              shadow-card
+            "
+          >
+
+            <div
+              className="
+                w-14
+                h-14
+                rounded-2xl
+                bg-primary/10
+                text-primary
+                flex
+                items-center
+                justify-center
+                mb-5
+              "
+            >
+
+              <MessageCircle
+                className="
+                  w-7
+                  h-7
+                "
+              />
+
+            </div>
+
+            <p
+              className="
+                text-slate-500
+              "
+            >
+
+              الرسائل الجديدة
+
+            </p>
+
+            <h2
+              className="
+                text-5xl
+                font-black
+                text-slate-900
+                mt-3
+              "
+            >
+
+              12
+
+            </h2>
+
+          </div>
+
+          {/* Saved */}
+
+          <div
+            className="
+              bg-white
+              rounded-[30px]
+              p-7
+              shadow-card
+            "
+          >
+
+            <div
+              className="
+                w-14
+                h-14
+                rounded-2xl
+                bg-primary/10
+                text-primary
+                flex
+                items-center
+                justify-center
+                mb-5
+              "
+            >
+
+              <Heart
+                className="
+                  w-7
+                  h-7
+                "
+              />
+
+            </div>
+
+            <p
+              className="
+                text-slate-500
+              "
+            >
+
+              الحرفيون المحفوظون
+
+            </p>
+
+            <h2
+              className="
+                text-5xl
+                font-black
+                text-slate-900
+                mt-3
+              "
+            >
+
+              7
+
+            </h2>
+
+          </div>
+
+          {/* Completed */}
+
+          <div
+            className="
+              bg-white
+              rounded-[30px]
+              p-7
+              shadow-card
+            "
+          >
+
+            <div
+              className="
+                w-14
+                h-14
+                rounded-2xl
+                bg-primary/10
+                text-primary
+                flex
+                items-center
+                justify-center
+                mb-5
+              "
+            >
+
+              <CheckCircle2
+                className="
+                  w-7
+                  h-7
+                "
+              />
+
+            </div>
+
+            <p
+              className="
+                text-slate-500
+              "
+            >
+
+              الطلبات المكتملة
+
+            </p>
+
+            <h2
+              className="
+                text-5xl
+                font-black
+                text-slate-900
+                mt-3
+              "
+            >
+
+              18
+
+            </h2>
+
+          </div>
+
+        </div>
+
+        {/* Recent Orders */}
+
+        <div
+          className="
+            mt-8
+            bg-white
+            rounded-[35px]
+            p-7
+            md:p-10
+            shadow-card
+          "
+        >
+
+          <div
+            className="
+              flex
+              items-center
+              justify-between
+              gap-4
+              mb-8
+            "
+          >
+
+            <div>
+
+              <h2
+                className="
+                  text-3xl
+                  font-black
+                  text-slate-900
+                "
+              >
+
+                آخر الطلبات
+
+              </h2>
+
+              <p
+                className="
+                  text-slate-500
+                  mt-2
+                "
+              >
+
+                متابعة أحدث الطلبات الخاصة بك
+
+              </p>
+
+            </div>
+
+            <button
+              className="
+                text-primary
+                font-bold
+                flex
+                items-center
+                gap-2
+              "
+            >
+
+              عرض الكل
+
+              <ArrowLeft
+                className="
+                  w-4
+                  h-4
+                "
+              />
+
+            </button>
+
+          </div>
+
+          <div className="space-y-5">
+
+            {[
+
+              {
+                title:
+                  "صيانة كهربائية منزلية",
+
+                time:
+                  "منذ ساعتين",
+
+                status:
+                  "قيد التنفيذ",
+
+                color:
+                  "bg-amber-100 text-amber-700",
+
+              },
+
+              {
+                title:
+                  "تركيب إنارة حديثة",
+
+                time:
+                  "أمس",
+
+                status:
+                  "مكتمل",
+
+                color:
+                  "bg-green-100 text-green-700",
+
+              },
+
+            ].map((order, index) => (
+
+              <div
+                key={index}
+                className="
+                  border
+                  border-slate-100
+                  rounded-[28px]
+                  p-6
+                  hover:shadow-soft
+                  transition-all
+                  duration-300
+                  flex
+                  flex-col
+                  md:flex-row
+                  items-start
+                  md:items-center
+                  justify-between
+                  gap-5
+                "
+              >
+
+                <div
+                  className="
+                    flex
+                    items-center
+                    gap-5
+                  "
+                >
+
+                  <div
+                    className="
+                      w-16
+                      h-16
+                      rounded-3xl
+                      bg-primary/10
+                      text-primary
+                      flex
+                      items-center
+                      justify-center
+                    "
+                  >
+
+                    <Sparkles
+                      className="
+                        w-8
+                        h-8
+                      "
+                    />
+
+                  </div>
+
+                  <div>
+
+                    <h3
+                      className="
+                        font-black
+                        text-xl
+                        text-slate-900
+                      "
+                    >
+
+                      {order.title}
+
+                    </h3>
+
+                    <div
+                      className="
+                        flex
+                        items-center
+                        gap-2
+                        text-slate-500
+                        mt-2
+                      "
+                    >
+
+                      <Clock3
+                        className="
+                          w-4
+                          h-4
+                        "
+                      />
+
+                      {order.time}
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <span
+                  className={`
+                    px-5
+                    py-3
+                    rounded-2xl
+                    font-bold
+                    text-sm
+                    ${order.color}
+                  `}
+                >
+
+                  {order.status}
+
+                </span>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+        {/* Saved Workers */}
+
+        <div
+          className="
+            mt-8
+            bg-white
+            rounded-[35px]
+            p-7
+            md:p-10
+            shadow-card
+          "
+        >
+
+          <div
+            className="
+              flex
+              items-center
+              justify-between
+              gap-4
+              mb-8
+            "
+          >
+
+            <div>
+
+              <h2
+                className="
+                  text-3xl
+                  font-black
+                  text-slate-900
+                "
+              >
+
+                الحرفيون المحفوظون
+
+              </h2>
+
+              <p
+                className="
+                  text-slate-500
+                  mt-2
+                "
+              >
+
+                الحرفيون الذين قمت بحفظهم
+
+              </p>
+
+            </div>
+
+            <button
+              className="
+                text-primary
+                font-bold
+                flex
+                items-center
+                gap-2
+              "
+            >
+
+              عرض الكل
+
+              <ArrowLeft
+                className="
+                  w-4
+                  h-4
+                "
+              />
+
+            </button>
+
+          </div>
+
+          <div
+            className="
+              grid
+              grid-cols-1
+              md:grid-cols-2
+              xl:grid-cols-3
+              gap-6
+            "
+          >
+
+            {[1,2,3].map((worker) => (
+
+              <div
+                key={worker}
+                className="
+                  border
+                  border-slate-100
+                  rounded-[32px]
+                  p-6
+                  hover:shadow-soft
+                  transition-all
+                  duration-300
+                "
+              >
+
+                <div
+                  className="
+                    flex
+                    items-center
+                    gap-5
+                    mb-6
+                  "
+                >
+
+                  <div
+                    className="
+                      w-20
+                      h-20
+                      rounded-3xl
+                      bg-slate-200
+                      flex
+                      items-center
+                      justify-center
+                    "
+                  >
+
+                    <UserCircle2
+                      className="
+                        w-12
+                        h-12
+                        text-slate-500
+                      "
+                    />
+
+                  </div>
+
+                  <div>
+
+                    <h3
+                      className="
+                        font-black
+                        text-xl
+                        text-slate-900
+                      "
+                    >
+
+                      أحمد بن علي
+
+                    </h3>
+
+                    <p
+                      className="
+                        text-slate-500
+                        mt-1
+                      "
+                    >
+
+                      كهربائي
+
+                    </p>
+
+                  </div>
+
+                </div>
+
+                <Link
+                  href="/workers/1"
+                  className="
+                    w-full
+                    py-4
+                    rounded-2xl
+                    bg-primary
+                    text-white
+                    font-black
+                    hover:opacity-90
+                    transition-all
+                    flex
+                    items-center
+                    justify-center
+                    gap-3
+                  "
+                >
+
+                  عرض الملف
+
+                </Link>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+        {/* Logout */}
+
+        <div
+          className="
+            mt-8
+          "
+        >
+
+          <button
+            className="
+              w-full
+              bg-red-50
+              text-red-600
+              rounded-[30px]
+              py-5
+              font-black
+              text-lg
+              hover:bg-red-100
+              transition-all
+              duration-300
+              flex
+              items-center
+              justify-center
+              gap-3
+            "
+          >
+
+            <LogOut
+              className="
+                w-6
+                h-6
+              "
+            />
+
+            تسجيل الخروج
+
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
