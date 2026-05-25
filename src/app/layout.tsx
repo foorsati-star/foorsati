@@ -154,26 +154,22 @@ export default function RootLayout({
 
         <div
           className="
-            relative
-            min-h-screen
-            w-full
-            overflow-hidden
-          "
+  relative
+  min-h-screen
+  w-full
+"
         >
 
           {/* Mobile Safe Area */}
 
           <div
-            className="
-              pb-[90px]
-              md:pb-0
-            "
-          >
-
-            {children}
-
-          </div>
-
+  className="
+    pb-[90px]
+    md:pb-0
+  "
+>
+  {children}
+</div>
         </div>
 
         {/* Global Toast */}

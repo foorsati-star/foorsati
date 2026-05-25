@@ -429,12 +429,14 @@ export default function Navbar() {
       >
 
         <div
-          className="
-            grid
-            grid-cols-5
-            gap-2
-          "
-        >
+  className="
+    flex
+    items-center
+    justify-evenly
+    w-full
+    gap-1
+  "
+>
 
           {mobileLinks.map(
             (link) => {
@@ -452,15 +454,17 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    gap-1
-                    py-3
-                    rounded-2xl
-                    transition-all
-                    duration-300
+  flex
+  flex-col
+  items-center
+  justify-center
+  gap-1
+  py-3
+  px-2
+  min-w-[72px]
+  rounded-2xl
+  transition-all
+  duration-300
                     ${
                       active
                         ? "bg-primary text-white shadow-lg scale-105"
