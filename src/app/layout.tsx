@@ -144,7 +144,6 @@ export default function RootLayout({
           antialiased
           overflow-x-hidden
           min-h-screen
-          overscroll-none
           selection:bg-primary/20
         "
         suppressHydrationWarning
@@ -152,25 +151,19 @@ export default function RootLayout({
 
         {/* App Wrapper */}
 
-        <div
+        <main
           className="
-  relative
-  min-h-screen
-  w-full
-"
+            relative
+            min-h-screen
+            w-full
+            pb-[140px]
+            md:pb-0
+          "
         >
 
-          {/* Mobile Safe Area */}
+          {children}
 
-          <div
-  className="
-    pb-[90px]
-    md:pb-0
-  "
->
-  {children}
-</div>
-        </div>
+        </main>
 
         {/* Global Toast */}
 
