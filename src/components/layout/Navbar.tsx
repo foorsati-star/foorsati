@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-
 import Logo from "@/components/ui/Logo";
 
 import {
@@ -38,8 +37,6 @@ export default function Navbar() {
   const [loading, setLoading] =
     useState(true);
 
-  // جلب المستخدم
-
   useEffect(() => {
 
     const getUser =
@@ -56,8 +53,6 @@ export default function Navbar() {
       };
 
     getUser();
-
-    // مراقبة تسجيل الدخول
 
     const {
       data: authListener,
@@ -145,7 +140,7 @@ export default function Navbar() {
 
   return (
 
-    <>
+    <div className="pb-[110px] md:pb-0">
 
       {/* Desktop + Top */}
 
@@ -417,10 +412,11 @@ export default function Navbar() {
           left-0
           right-0
           z-[100]
+          h-[92px]
           px-4
           pb-[max(12px,env(safe-area-inset-bottom))]
           pt-3
-          bg-white/90
+          bg-white/95
           backdrop-blur-2xl
           border-t
           border-slate-200
@@ -429,14 +425,14 @@ export default function Navbar() {
       >
 
         <div
-  className="
-    flex
-    items-center
-    justify-evenly
-    w-full
-    gap-1
-  "
->
+          className="
+            flex
+            items-center
+            justify-evenly
+            w-full
+            gap-1
+          "
+        >
 
           {mobileLinks.map(
             (link) => {
@@ -454,17 +450,17 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`
-  flex
-  flex-col
-  items-center
-  justify-center
-  gap-1
-  py-3
-  px-2
-  min-w-[72px]
-  rounded-2xl
-  transition-all
-  duration-300
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    gap-1
+                    py-3
+                    px-2
+                    min-w-[72px]
+                    rounded-2xl
+                    transition-all
+                    duration-300
                     ${
                       active
                         ? "bg-primary text-white shadow-lg scale-105"
@@ -540,7 +536,7 @@ export default function Navbar() {
 
       </div>
 
-    </>
+    </div>
 
   );
 
