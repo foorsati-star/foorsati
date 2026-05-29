@@ -472,30 +472,76 @@ export default function LoginPage() {
 
             </button>
 
-            {/* Register */}
+           {/* Register */}
 
-            <div className="text-center pt-4">
+<div
+  className="
+    text-center
+    pt-6
+    border-t
+    border-slate-100
+  "
+>
 
-              <span className="text-slate-500">
+  <p
+    className="
+      text-slate-500
+      mb-4
+    "
+  >
 
-                ليس لديك حساب؟
+    ليس لديك حساب؟
 
-              </span>
+  </p>
 
-              <Link
-                href="/register"
-                className="
-                  text-primary
-                  font-bold
-                  mr-2
-                "
-              >
+  <div
+    className="
+      flex
+      flex-col
+      gap-3
+    "
+  >
 
-                إنشاء حساب
+    <Link
+      href="/register"
+      className="
+        h-12
+        rounded-2xl
+        bg-primary
+        text-white
+        font-bold
+        flex
+        items-center
+        justify-center
+      "
+    >
 
-              </Link>
+      إنشاء حساب عميل
 
-            </div>
+    </Link>
+
+    <Link
+      href="/join"
+      className="
+        h-12
+        rounded-2xl
+        border-2
+        border-primary
+        text-primary
+        font-bold
+        flex
+        items-center
+        justify-center
+      "
+    >
+
+      التسجيل كحرفي
+
+    </Link>
+
+  </div>
+
+</div>
 
           </form>
 

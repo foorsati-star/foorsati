@@ -455,9 +455,11 @@ export default function ArtisanDashboard() {
           <div
             className="
               flex
-              items-center
-              gap-4
-              flex-wrap
+flex-wrap
+items-center
+justify-center
+gap-3
+lg:justify-start
             "
           >
 
@@ -552,30 +554,23 @@ export default function ArtisanDashboard() {
 
           {/* Right Side */}
 
-          <div
+<div
   className="
     space-y-6
-    max-w-md
-    mx-auto
-    lg:max-w-none
   "
 >
 
             {/* Profile */}
 
-           <div
+<div
   className="
     bg-white
     rounded-[35px]
     shadow-sm
     p-6
     text-center
-    max-w-md
-    mx-auto
-    lg:max-w-none
   "
 >
-
               <div
                 className="
                   flex
@@ -776,7 +771,13 @@ export default function ArtisanDashboard() {
 
             {/* Stats */}
 
-            <div className="grid grid-cols-1 gap-4">
+            <div
+  className="
+    grid
+    grid-cols-2
+    gap-4
+  "
+>
 
               <div
                 className="

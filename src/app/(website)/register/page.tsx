@@ -243,78 +243,6 @@ export default function RegisterPage() {
           }}
         >
 
-          {/* Account Type */}
-
-          <div>
-
-            <label
-              className="
-                block
-                text-sm
-                font-bold
-                text-slate-800
-                mb-3
-              "
-            >
-              نوع الحساب
-            </label>
-
-            <div className="grid grid-cols-2 gap-4">
-
-              {/* Client */}
-
-              <button
-                type="button"
-                onClick={() =>
-                  setRole("client")
-                }
-                className={`
-                  h-14
-                  rounded-2xl
-                  font-bold
-                  transition-all
-                  duration-300
-                  ${
-                    role === "client"
-                      ? "bg-primary text-white shadow-lg"
-                      : "bg-slate-100 text-slate-700"
-                  }
-                `}
-              >
-
-                عميل
-
-              </button>
-
-              {/* Worker */}
-
-              <button
-                type="button"
-                onClick={() =>
-                  setRole("worker")
-                }
-                className={`
-                  h-14
-                  rounded-2xl
-                  font-bold
-                  transition-all
-                  duration-300
-                  ${
-                    role === "worker"
-                      ? "bg-primary text-white shadow-lg"
-                      : "bg-slate-100 text-slate-700"
-                  }
-                `}
-              >
-
-                حرفي
-
-              </button>
-
-            </div>
-
-          </div>
-
           {/* Full Name */}
 
           <div>
@@ -502,43 +430,7 @@ export default function RegisterPage() {
 
           {/* Category */}
 
-          <div>
-
-            <label
-              className="
-                block
-                text-sm
-                font-bold
-                text-slate-800
-                mb-2
-              "
-            >
-              التخصص
-            </label>
-
-            <input
-              type="text"
-              value={category}
-              onChange={(e) =>
-                setCategory(
-                  e.target.value
-                )
-              }
-              placeholder="مثال: كهربائي"
-              className="
-                w-full
-                h-14
-                rounded-2xl
-                border
-                border-slate-200
-                px-5
-                outline-none
-                focus:border-primary
-              "
-              required
-            />
-
-          </div>
+        
 
           {/* Password */}
 
