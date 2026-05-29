@@ -350,13 +350,13 @@ export default function ArtisanDashboard() {
                       true
                     );
 
-                    setTimeout(() => {
+                 window.setTimeout(() => {
 
-                      setNewNotification(
-                        false
-                      );
+  setNewNotification(
+    false
+  );
 
-                    }, 3000);
+}, 3000);
 
                   }
 
@@ -367,6 +367,7 @@ export default function ArtisanDashboard() {
         }
 
       };
+      
 
     getDashboardData();
 
@@ -417,130 +418,176 @@ export default function ArtisanDashboard() {
           "
         >
 
-          {/* Right */}
+         {/* Right */}
 
-          <div>
+<div
+  className="
+    text-center
+    w-full
+  "
+>
 
-            <h1
-              className="
-                text-3xl
-                font-extrabold
-                text-slate-900
-              "
-            >
+  <h1
+    className="
+      text-3xl
+      font-extrabold
+      text-slate-900
+    "
+  >
 
-              مرحبًا
-              {
-                profile?.full_name
-              } 👋
+    مرحبًا {profile?.full_name} 👋
 
-            </h1>
+  </h1>
 
-            <p
-              className="
-                text-slate-500
-                mt-2
-                text-lg
-              "
-            >
+  <p
+    className="
+      text-slate-500
+      mt-2
+      text-lg
+    "
+  >
 
-              لوحة تحكم الحرفي الخاصة بك
+    لوحة تحكم الحرفي الخاصة بك
 
-            </p>
+  </p>
 
-          </div>
+</div>
 
-          {/* Left */}
+{/* Left */}
 
-          <div
-            className="
-              flex
-flex-wrap
-items-center
-justify-center
-gap-3
-lg:justify-start
-            "
-          >
+<div
+  className="
+    flex
+    flex-wrap
+    justify-center
+    items-center
+    gap-2
+    w-full
+  "
+>
 
-            <Link
-              href="/dashboard/artisan/chats"
-              className="
-                relative
-                bg-slate-100
-                hover:bg-slate-200
-                transition
-                px-6
-                py-4
-                rounded-2xl
-                font-bold
-                text-slate-700
-              "
-            >
+  <Link
+    href="/"
+    className="
+      bg-slate-100
+      hover:bg-slate-200
+      transition
+      px-4
+      py-3
+      rounded-2xl
+      font-bold
+      text-slate-700
+    "
+  >
+    الرئيسية
+  </Link>
 
-              المحادثات
+  <Link
+    href="/workers"
+    className="
+      bg-slate-100
+      hover:bg-slate-200
+      transition
+      px-4
+      py-3
+      rounded-2xl
+      font-bold
+      text-slate-700
+    "
+  >
+    الحرفيون
+  </Link>
 
-            </Link>
+  <Link
+    href="/dashboard/artisan/chats"
+    className="
+      relative
+      bg-slate-100
+      hover:bg-slate-200
+      transition
+      px-4
+      py-3
+      rounded-2xl
+      font-bold
+      text-slate-700
+    "
+  >
+    المحادثات
+  </Link>
 
-            <Link
-              href="/dashboard/artisan/requests"
-              className={`
-                relative
-                text-white
-                px-6
-                py-4
-                rounded-2xl
-                font-bold
-                shadow-lg
-                hover:scale-105
-                transition-all
-                duration-300
-                ${
-                  newNotification
-                    ? "bg-red-500 shadow-[0_0_40px_rgba(239,68,68,0.8)]"
-                    : "bg-primary"
-                }
-              `}
-            >
+  <Link
+    href="/dashboard/artisan/requests"
+    className={`
+      relative
+      text-white
+      px-4
+      py-3
+      rounded-2xl
+      font-bold
+      ${
+        newNotification
+          ? "bg-red-500"
+          : "bg-primary"
+      }
+    `}
+  >
 
-              الطلبات
+    الطلبات
 
-              {pendingRequests > 0 && (
+    {pendingRequests > 0 && (
 
-                <div
-                  className="
-                    absolute
-                    -top-2
-                    -left-2
-                    bg-red-500
-                    text-white
-                    w-7
-                    h-7
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                    text-sm
-                    font-bold
-                    shadow-lg
-                    animate-pulse
-                  "
-                >
+      <div
+        className="
+          absolute
+          -top-2
+          -left-2
+          bg-red-500
+          text-white
+          w-6
+          h-6
+          rounded-full
+          flex
+          items-center
+          justify-center
+          text-xs
+          font-bold
+        "
+      >
 
-                  {
-                    pendingRequests
-                  }
+        {pendingRequests}
 
-                </div>
+      </div>
 
-              )}
+    )}
 
-            </Link>
+  </Link>
 
-          </div>
+  <button
+    onClick={async () => {
 
-        </div>
+      await supabase.auth.signOut();
 
+      window.location.href = "/";
+
+    }}
+    className="
+      bg-red-50
+      text-red-600
+      px-4
+      py-3
+      rounded-2xl
+      font-bold
+      hover:bg-red-100
+      transition
+    "
+  >
+
+    تسجيل الخروج
+
+  </button>
+  </div>
+
+</div>
         {/* Main Grid */}
 
         <div

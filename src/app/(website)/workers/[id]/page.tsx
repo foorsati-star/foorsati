@@ -86,23 +86,48 @@ export default function WorkerProfile({
 
   const handleChat = async () => {
 
+  try {
+
     if (!worker) return;
 
     setChatLoading(true);
 
-    // Existing Chat
+    // المستخدم الحالي
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    // إذا غير مسجل دخول
+
+    if (!user) {
+
+      router.push("/login");
+
+      return;
+
+    }
+
+    // البحث عن محادثة موجودة
 
     const {
       data: existingChat,
+      error: existingError,
     } = await supabase
+
       .from("chats")
+
       .select("*")
+
+      .eq("client_id", user.id)
+
       .eq("worker_id", worker.id)
-      .single();
+
+      .maybeSingle();
+
+    // إذا المحادثة موجودة
 
     if (existingChat) {
-
-      setChatLoading(false);
 
       router.push(
         `/chat/${existingChat.id}`
@@ -112,39 +137,68 @@ export default function WorkerProfile({
 
     }
 
-    // Create Chat
+    // إنشاء محادثة جديدة
 
     const {
       data: newChat,
-      error,
+      error: createError,
     } = await supabase
+
       .from("chats")
+
       .insert([
 
         {
+
+          client_id: user.id,
+
           worker_id: worker.id,
+
         },
 
       ])
+
       .select()
+
       .single();
 
-    setChatLoading(false);
+    // خطأ
 
-    if (error) {
+    if (createError) {
 
-      console.log(error);
+      console.error(createError);
+
+      alert(
+        "فشل إنشاء المحادثة"
+      );
 
       return;
 
     }
 
+    // فتح المحادثة
+
     router.push(
       `/chat/${newChat.id}`
     );
 
-  };
+  } catch (error) {
 
+    console.error(error);
+
+    alert(
+      "حدث خطأ أثناء فتح المحادثة"
+    );
+
+  } finally {
+
+    setChatLoading(false);
+
+  }
+
+};
+
+    
   // Loading
 
   if (!worker) {
