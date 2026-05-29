@@ -362,12 +362,11 @@ export default function ArtisanDashboard() {
 
                 }
               )
-              .subscribe();
+.subscribe();
 
-        }
+        } // end if(workerData)
 
-      };
-      
+      }; // end getDashboardData
 
     getDashboardData();
 
@@ -398,7 +397,13 @@ export default function ArtisanDashboard() {
       dir="rtl"
     >
 
-      <div className="max-w-7xl mx-auto">
+      <div
+  className="
+    max-w-7xl
+    mx-auto
+    w-full
+  "
+>
 
         {/* Navbar */}
 
@@ -423,7 +428,8 @@ export default function ArtisanDashboard() {
 <div
   className="
     text-center
-    w-full
+    lg:text-right
+    flex-1
   "
 >
 
@@ -460,9 +466,10 @@ export default function ArtisanDashboard() {
     flex
     flex-wrap
     justify-center
+    lg:justify-start
     items-center
     gap-2
-    w-full
+    flex-1
   "
 >
 
@@ -843,7 +850,7 @@ export default function ArtisanDashboard() {
 
                 <h2
                   className="
-                    text-4xl
+                   text-2xl md:text-4xl 
                     font-extrabold
                     text-primary
                     mt-4
