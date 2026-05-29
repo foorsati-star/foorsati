@@ -552,18 +552,29 @@ export default function ArtisanDashboard() {
 
           {/* Right Side */}
 
-          <div className="space-y-6">
+          <div
+  className="
+    space-y-6
+    max-w-md
+    mx-auto
+    lg:max-w-none
+  "
+>
 
             {/* Profile */}
 
-            <div
-              className="
-                bg-white
-                rounded-[35px]
-                shadow-sm
-                p-6
-              "
-            >
+           <div
+  className="
+    bg-white
+    rounded-[35px]
+    shadow-sm
+    p-6
+    text-center
+    max-w-md
+    mx-auto
+    lg:max-w-none
+  "
+>
 
               <div
                 className="
@@ -687,7 +698,13 @@ export default function ArtisanDashboard() {
 
               {/* Info */}
 
-              <div className="mt-8 space-y-4">
+              <div
+  className="
+    mt-8
+    space-y-4
+    text-center
+  "
+>
 
                 <div
                   className="
