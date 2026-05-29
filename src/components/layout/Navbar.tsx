@@ -31,26 +31,43 @@ export default function Navbar() {
   const pathname =
     usePathname();
 
-  const [user, setUser] =
-    useState<any>(null);
+const [user, setUser] =
+  useState<any>(null);
 
-  const [loading, setLoading] =
-    useState(true);
+const [profile, setProfile] =
+  useState<any>(null);
+
+const [loading, setLoading] =
+  useState(true);
 
   useEffect(() => {
 
-    const getUser =
-      async () => {
+  const getUser =
+  async () => {
 
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-        setUser(user);
+    setUser(user);
 
-        setLoading(false);
+    if (user) {
 
-      };
+      const {
+        data: profileData,
+      } = await supabase
+        .from("profiles")
+        .select("account_type")
+        .eq("id", user.id)
+        .single();
+
+      setProfile(profileData);
+
+    }
+
+    setLoading(false);
+
+  };
 
     getUser();
 
@@ -212,35 +229,39 @@ export default function Navbar() {
             {/* Dashboard */}
 
             {
-              user && (
+  user && (
 
-                <Link
-                  href="/dashboard/artisan"
-                  className="
-                    hidden
-                    md:flex
-                    px-5
-                    h-11
-                    rounded-2xl
-                    bg-primary
-                    text-white
-                    text-sm
-                    font-bold
-                    items-center
-                    justify-center
-                    hover:opacity-90
-                    transition-all
-                    duration-300
-                    shadow-lg
-                  "
-                >
+    <Link
+      href={
+        profile?.account_type === "worker"
+          ? "/dashboard/artisan"
+          : "/dashboard/client"
+      }
+      className="
+        hidden
+        md:flex
+        px-5
+        h-11
+        rounded-2xl
+        bg-primary
+        text-white
+        text-sm
+        font-bold
+        items-center
+        justify-center
+        hover:opacity-90
+        transition-all
+        duration-300
+        shadow-lg
+      "
+    >
 
-                  لوحة التحكم
+      لوحة التحكم
 
-                </Link>
+    </Link>
 
-              )
-            }
+  )
+}
 
             {/* Login / Logout */}
 
