@@ -156,7 +156,7 @@ export default function RootLayout({
             relative
             min-h-screen
             w-full
-            pb-[140px]
+            pb-[110px]
             md:pb-0
           "
         >

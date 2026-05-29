@@ -33,7 +33,11 @@
 
     overflow-x: hidden;
 
+    overflow-y: auto;
+
     -webkit-text-size-adjust: 100%;
+
+    touch-action: pan-y;
 
   }
 
@@ -58,8 +62,6 @@
     overflow-x: hidden;
 
     min-height: 100vh;
-
-    overscroll-behavior-y: none;
 
     -webkit-font-smoothing:
       antialiased;
