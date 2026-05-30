@@ -18,7 +18,7 @@ export default function ArtisanChatsPage() {
     useState(true);
 
   const [newMessage, setNewMessage] =
-    useState(false);
+    useState(0);
 
   useEffect(() => {
 
@@ -69,25 +69,22 @@ export default function ArtisanChatsPage() {
 
           (chatsData || []).map(
             async (chat) => {
+const {
+  data: messages,
+} = await supabase
+  .from("messages")
+  .select("*")
+  .eq("chat_id", chat.id)
+  .order("created_at", {
+    ascending: false,
+  });
 
-              const {
-                data: messages,
-              } = await supabase
-                .from("messages")
-                .select("*")
-                .eq("chat_id", chat.id)
-                .order("created_at", {
-                  ascending: false,
-                })
-                .limit(1);
-
-              // عدد الرسائل غير المقروءة
-
-              const unreadCount =
-                messages?.filter(
-                  (msg) =>
-                    msg.sender !== "worker"
-                ).length || 0;
+const unreadCount =
+  messages?.filter(
+    (msg) =>
+      msg.sender === "client" &&
+      !msg.is_read
+  ).length || 0;
 
               return {
 

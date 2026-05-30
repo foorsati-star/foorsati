@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 import {
 
@@ -31,6 +33,40 @@ import {
 } from "lucide-react";
 
 export default function ClientDashboard() {
+
+  const [profile, setProfile] =
+    useState<any>(null);
+
+  useEffect(() => {
+
+    const loadProfile = async () => {
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) return;
+
+      const {
+        data,
+        error,
+      } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+
+      if (!error) {
+
+        setProfile(data);
+
+      }
+
+    };
+
+    loadProfile();
+
+  }, []);
 
   return (
 
@@ -170,18 +206,16 @@ export default function ClientDashboard() {
                   "
                 >
 
-                  <h1
-                    className="
-                      text-4xl
-                      md:text-5xl
-                      font-black
-                      text-white
-                    "
-                  >
-
-                    محمد علي
-
-                  </h1>
+                 <h1
+  className="
+    text-4xl
+    md:text-5xl
+    font-black
+    text-white
+  "
+>
+  {profile?.full_name}
+</h1>
 
                   <div
                     className="
@@ -320,37 +354,37 @@ export default function ClientDashboard() {
                 lg:w-auto
               "
             >
+<Link
+  href="/dashboard/client/chats"
+  className="
+    bg-white
+    text-primary
+    px-10
+    py-5
+    rounded-3xl
+    text-lg
+    font-black
+    shadow-2xl
+    hover:scale-105
+    transition-all
+    duration-300
+    flex
+    items-center
+    justify-center
+    gap-3
+  "
+>
 
-              <button
-                className="
-                  bg-white
-                  text-primary
-                  px-10
-                  py-5
-                  rounded-3xl
-                  text-lg
-                  font-black
-                  shadow-2xl
-                  hover:scale-105
-                  transition-all
-                  duration-300
-                  flex
-                  items-center
-                  justify-center
-                  gap-3
-                "
-              >
+  <MessageCircle
+    className="
+      w-6
+      h-6
+    "
+  />
 
-                <MessageCircle
-                  className="
-                    w-6
-                    h-6
-                  "
-                />
+  الرسائل
 
-                الرسائل
-
-              </button>
+</Link>
 
               <button
                 className="

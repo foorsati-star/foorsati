@@ -477,10 +477,7 @@ export default function ChatPage({
           params.id,
 
         sender:
-          "worker",
-
-        sender_id:
-          user.id,
+          "client",
 
         message:
           message.trim(),
@@ -712,6 +709,9 @@ export default function ChatPage({
                   }
                 `}
               >
+              <div className="text-xs mb-1 opacity-70">
+  {msg.sender}
+</div>
 
                 {msg.message}
 

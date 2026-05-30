@@ -25,6 +25,8 @@ export default function ArtisanDashboard() {
 
   const [newNotification, setNewNotification] =
     useState(false);
+    const [unreadMessages, setUnreadMessages] =
+  useState(0);
 
   const [uploading, setUploading] =
     useState(false);
@@ -181,6 +183,7 @@ export default function ArtisanDashboard() {
   useEffect(() => {
 
     let requestsChannel: any;
+let messagesChannel: any;
 
     const getDashboardData =
       async () => {
@@ -223,6 +226,7 @@ export default function ArtisanDashboard() {
 
         const {
           data: profileData,
+          
         } = await supabase
           .from("profiles")
           .select("*")
@@ -235,6 +239,19 @@ export default function ArtisanDashboard() {
         setProfile(
           profileData
         );
+        // عدد الرسائل غير المقروءة
+
+const {
+  data: unreadMessagesData,
+} = await supabase
+  .from("messages")
+  .select("*")
+  .eq("is_read", false)
+  .eq("sender", "client");
+
+setUnreadMessages(
+  unreadMessagesData?.length || 0
+);
 
         // Requests
 
@@ -350,6 +367,18 @@ export default function ArtisanDashboard() {
                       true
                     );
 
+                    const {
+  data: unreadMessagesData,
+} = await supabase
+  .from("messages")
+  .select("*")
+  .eq("is_read", false)
+  .eq("sender", "client");
+
+setUnreadMessages(
+  unreadMessagesData?.length || 0
+);
+
                  window.setTimeout(() => {
 
   setNewNotification(
@@ -364,25 +393,45 @@ export default function ArtisanDashboard() {
               )
 .subscribe();
 
+messagesChannel = supabase
+  .channel(`artisan-messages-${workerData.id}`)
+  .on(
+    "postgres_changes",
+    {
+      event: "INSERT",
+      schema: "public",
+      table: "messages",
+    },
+    async () => {
+
+      const {
+        data: unreadMessagesData,
+      } = await supabase
+        .from("messages")
+        .select("*")
+        .eq("is_read", false)
+        .eq("sender", "client");
+
+      setUnreadMessages(
+        unreadMessagesData?.length || 0
+      );
+
+    }
+  )
+  .subscribe();
         } // end if(workerData)
 
       }; // end getDashboardData
+      
 
     getDashboardData();
+    
 
-    return () => {
-
-      if (
-        requestsChannel
-      ) {
-
-        supabase.removeChannel(
-          requestsChannel
-        );
-
-      }
-
-    };
+if (messagesChannel) {
+  supabase.removeChannel(
+    messagesChannel
+  );
+}
 
   }, []);
 
@@ -505,22 +554,50 @@ export default function ArtisanDashboard() {
     الحرفيون
   </Link>
 
-  <Link
-    href="/dashboard/artisan/chats"
-    className="
-      relative
-      bg-slate-100
-      hover:bg-slate-200
-      transition
-      px-4
-      py-3
-      rounded-2xl
-      font-bold
-      text-slate-700
-    "
-  >
-    المحادثات
-  </Link>
+<Link
+  href="/dashboard/artisan/chats"
+  className="
+    relative
+    bg-slate-100
+    hover:bg-slate-200
+    transition
+    px-4
+    py-3
+    rounded-2xl
+    font-bold
+    text-slate-700
+  "
+>
+
+  المحادثات
+
+  {unreadMessages > 0 && (
+
+    <div
+      className="
+        absolute
+        -top-2
+        -left-2
+        bg-red-500
+        text-white
+        w-6
+        h-6
+        rounded-full
+        flex
+        items-center
+        justify-center
+        text-xs
+        font-bold
+      "
+    >
+
+      {unreadMessages}
+
+    </div>
+
+  )}
+
+</Link>
 
   <Link
     href="/dashboard/artisan/requests"

@@ -99,31 +99,35 @@ export default function ChatPage({
 
   // إرسال الرسالة
 
-  const sendMessage = async () => {
+const sendMessage = async () => {
 
-    if (!message.trim()) return;
+  if (!message.trim()) return;
 
-    const tempMessage = message;
+  const tempMessage = message;
 
-    setMessage("");
+  setMessage("");
 
-    const { error } = await supabase
-      .from("messages")
-      .insert([
-        {
-          chat_id: params.id,
+  const { data, error } = await supabase
+    .from("messages")
+    .insert([
+      {
+        chat_id: params.id,
+        sender: "client",
+        message: tempMessage,
+      },
+    ])
+    .select();
 
-          sender: "worker",
+  console.log("DATA:", data);
+  console.log("ERROR:", error);
 
-          message: tempMessage,
-        },
-      ]);
+  if (error) {
 
-    if (error) {
-      console.log(error);
-    }
+    alert(error.message);
 
-  };
+  }
+
+};
 
   return (
 

@@ -138,19 +138,27 @@ export default function LoginPage() {
       // Redirect حسب نوع الحساب
 
       if (
-        profile.account_type ===
-        "worker"
-      ) {
+  profile.account_type ===
+  "worker"
+) {
 
-        router.push(
-          "/dashboard/artisan"
-        );
+  router.push(
+    "/dashboard/artisan"
+  );
 
-      } else {
+} else if (
+  profile.account_type ===
+  "client"
+) {
 
-        router.push("/");
+  router.push(
+    "/dashboard/client"
+  );
 
-      }
+} else {
+
+  router.push("/");
+}
 
     } catch (err) {
 

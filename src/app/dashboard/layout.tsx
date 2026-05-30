@@ -286,66 +286,75 @@ export default function DashboardLayout({
 
       {/* Main Content */}
 
-      <main className="flex-1">
-
-        {/* Mobile Topbar */}
+      <main
+  className="
+    flex-1
+    w-full
+    overflow-x-hidden
+  "
+>
 
         <div
-          className="
-            lg:hidden
-            bg-white
-            p-4
-            shadow-sm
-            flex
-            items-center
-            gap-3
-            overflow-x-auto
-          "
-        >
+  className="
+    lg:hidden
+    bg-white
+    p-2
+    shadow-sm
+    flex
+    gap-2
+  "
+>
 
-          {links.map((link) => {
+  {links.map((link) => {
 
-            const active =
-              pathname === link.href;
+    const active =
+      pathname === link.href;
 
-            return (
+    return (
 
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`
-                  whitespace-nowrap
-                  px-5
-                  py-3
-                  rounded-2xl
-                  font-bold
-                  transition-all
-                  duration-300
-                  ${
-                    active
-                      ? "bg-primary text-white"
-                      : "bg-slate-100 text-slate-700"
-                  }
-                `}
-              >
+      <Link
+        key={link.href}
+        href={link.href}
+        className={`
+          flex-1
+          text-center
+          py-3
+          px-2
+          rounded-xl
+          text-xs
+          font-bold
+          transition-all
+          duration-300
+          ${
+            active
+              ? "bg-primary text-white"
+              : "bg-slate-100 text-slate-700"
+          }
+        `}
+      >
 
-                {link.name}
+        {link.name}
 
-              </Link>
+      </Link>
 
-            );
+    );
 
-          })}
+  })}
 
-        </div>
-
+</div>
         {/* Page */}
 
-        <div>
+        <div
+  className="
+    w-full
+    max-w-full
+    overflow-x-hidden
+  "
+>
 
-          {children}
+  {children}
 
-        </div>
+</div>
 
       </main>
 
