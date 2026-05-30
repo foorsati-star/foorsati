@@ -18,7 +18,7 @@ export default function ArtisanChatsPage() {
     useState(true);
 
   const [newMessage, setNewMessage] =
-    useState(0);
+    useState(false);
 
   useEffect(() => {
 
